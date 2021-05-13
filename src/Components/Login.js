@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TextField from "./Textfield";
+import { Formik, Form } from "formik";
 const Signup = () => {
   return (
     <>
       <div className="container-fluid main">
         <div className="row h-100">
-        <div className="col-md-5 second p-5">
+          <div className="col-md-5 second p-5">
             <h4 className="text-center pb-2">Sign In</h4>
             <div className="d-grid gap-2">
               <button className="btn btn-light" type="button">
@@ -17,31 +19,37 @@ const Signup = () => {
               <button className="btn btn-light">Log In with Apple</button>
             </div>
             <hr />
-            <div className="mb-3">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Please enter your email address."
-                autocomplete="off"
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                className="form-control"
-                type="password"
-                id="password"
-                placeholder="Password"
-                autocomplete="off"
-              />
-            </div>
-            <div className="d-grid gap-2">
-              <button className="btn btn-primary">Sing In</button>
-            </div>
-            <small className="text-muted d-block text-center mt-2">
-              Have'nt got an account?{"   "}
-              <Link to="/" className="text-primary button">Sign Up</Link>
-            </small>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+            >
+              {(formik) => (
+                <Form>
+                  {console.log(formik.values)}
+                  <TextField
+                    type="email"
+                    name="email"
+                    placeholder="Please enter your email address."
+                  />
+                  <TextField
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <div className="d-grid gap-2">
+                    <button className="btn btn-primary" type="submit">Sing In</button>
+                  </div>
+                  <small className="text-muted d-block text-center mt-2">
+                    Have'nt got an account?{"   "}
+                    <Link to="/" className="text-primary button">
+                      Sign Up
+                    </Link>
+                  </small>
+                </Form>
+              )}
+            </Formik>
           </div>
           <div className="col-md-7 colorFul p-5 text-light first d-flex align-items-center">
             <main>
