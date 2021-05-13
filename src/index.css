@@ -1,0 +1,17 @@
+@import url(https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css);
+.colorFul {
+  background: rgb(25, 26, 27);
+  background: linear-gradient(
+    179deg,
+    rgba(25, 26, 27, 1) 0%,
+    rgba(0, 100, 233, 1) 0%,
+    rgba(0, 140, 241, 1) 100%
+  );
+}
+
+.main {
+  height: 100vh;
+}
+.button{
+  cursor: pointer;
+}
