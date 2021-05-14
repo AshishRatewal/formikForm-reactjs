@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import TextField from "./Textfield";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 const Signup = () => {
   const validate = Yup.object({
     email: Yup.string()
@@ -35,8 +36,20 @@ const Signup = () => {
                 password: "",
               }}
               validationSchema={validate}
-              onSubmit = {(values) => {
-                console.log("Login Details ",values);
+              onSubmit={(values) => {
+                const { email, password } = values;
+                axios
+                  .post("http://localhost:4000/apis/login", {
+                    email: email,
+                    password: password,
+                  })
+                  .then((response) => {
+                    console.log("Response => ", response.data);
+                    alert("Login");
+                  })
+                  .catch((err) => {
+                    console.log("Error => ", err.message);
+                  });
               }}
             >
               {(formik) => (

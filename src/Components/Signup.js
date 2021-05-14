@@ -72,7 +72,21 @@ const Signup = () => {
               }}
               validationSchema={validate}
               onSubmit={(values) => {
-                console.log("final values:=>", values);
+                const { name, email, phone, password } = values;
+                axios
+                  .post("http://localhost:4000/apis/register", {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    password: password,
+                  })
+                  .then((response) => {
+                    console.log("Response => ", response);
+                    alert("Submitted");
+                  })
+                  .catch((err) => {
+                    console.log("Error => ", err.message);
+                  });
               }}
             >
               {(formik) => (
