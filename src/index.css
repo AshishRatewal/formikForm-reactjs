@@ -12,10 +12,11 @@
 .main {
   height: 100vh;
 }
-.button{
+.button {
   cursor: pointer;
 }
-.error{
+.error {
+  position: absolute;
   font-size: 0.75rem;
   color: red;
 }

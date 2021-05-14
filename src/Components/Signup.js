@@ -3,18 +3,21 @@ import { Link } from "react-router-dom";
 import TextField from "./Textfield";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 const Signup = () => {
   const validate = Yup.object({
     name: Yup.string()
       .max(15, "Must have 15 character or less*")
       .required("Name is required*"),
-    email: Yup.string().email("Email is invalid*").required("Email is required*"),
+    email: Yup.string()
+      .email("Email is invalid*")
+      .required("Email is required*"),
     phone: Yup.number()
       .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
-      .min(10, "Must have 10 digit")
-      .required("A phone number is required"),
+      .positive("Phone number can't start with a minus")
+      .integer("Phone number can't include a decimal point")
+      .min(1_111_111_111, "Must have 10 digit")
+      .required("Phone number is required"),
     password: Yup.string()
       .min(8, "Must have 8 character or more*")
       .max(15, "Must have 15 character or less*")
@@ -69,7 +72,7 @@ const Signup = () => {
               }}
               validationSchema={validate}
               onSubmit={(values) => {
-                alert("final values:=>"+ values);
+                console.log("final values:=>", values);
               }}
             >
               {(formik) => (

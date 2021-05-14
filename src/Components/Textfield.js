@@ -4,7 +4,7 @@ const Textfield = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
-      <div className="mb-3">
+      <div className="mb-4">
         <input
           className={`form-control ${
             meta.touched && meta.error && "is-invalid"

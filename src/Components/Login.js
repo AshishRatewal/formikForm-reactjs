@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TextField from "./Textfield";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 const Signup = () => {
+  const validate = Yup.object({
+    email: Yup.string()
+      .email("Enter valid email*")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(8, "Must have 8 character or more*")
+      .max(15, "Must have 15 character or less*")
+      .required("Password is required*"),
+  });
   return (
     <>
       <div className="container-fluid main">
@@ -24,6 +34,10 @@ const Signup = () => {
                 email: "",
                 password: "",
               }}
+              validationSchema={validate}
+              onSubmit = {(values) => {
+                console.log("Login Details ",values);
+              }}
             >
               {(formik) => (
                 <Form>
@@ -39,7 +53,9 @@ const Signup = () => {
                     placeholder="Password"
                   />
                   <div className="d-grid gap-2">
-                    <button className="btn btn-primary" type="submit">Sing In</button>
+                    <button className="btn btn-primary" type="submit">
+                      Sing In
+                    </button>
                   </div>
                   <small className="text-muted d-block text-center mt-2">
                     Have'nt got an account?{"   "}
